@@ -1,26 +1,22 @@
 import NextAuth from "next-auth";
 import "next-auth/jwt";
 
-import { UnstorageAdapter } from "@auth/unstorage-adapter";
 import type { NextAuthConfig } from "next-auth";
 import GitHub from "next-auth/providers/github";
-import { createStorage } from "unstorage";
-import memoryDriver from "unstorage/drivers/memory";
-import vercelKVDriver from "unstorage/drivers/vercel-kv";
 
-const storage = createStorage({
-  driver: process.env.VERCEL
-    ? vercelKVDriver({
-        url: process.env.AUTH_KV_REST_API_URL,
-        token: process.env.AUTH_KV_REST_API_TOKEN,
-        env: false,
-      })
-    : memoryDriver(),
-});
+// const storage = createStorage({
+//   driver: process.env.VERCEL
+//     ? vercelKVDriver({
+//         url: process.env.AUTH_KV_REST_API_URL,
+//         token: process.env.AUTH_KV_REST_API_TOKEN,
+//         env: false,
+//       })
+//     : memoryDriver(),
+// });
 
 const config = {
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
-  adapter: UnstorageAdapter(storage),
+  // adapter: UnstorageAdapter(storage),
   providers: [GitHub],
   basePath: "/api/auth",
   callbacks: {
