@@ -17,7 +17,12 @@ import GitHub from "next-auth/providers/github";
 const config = {
   theme: { logo: "https://authjs.dev/img/logo-sm.png" },
   // adapter: UnstorageAdapter(storage),
-  providers: [GitHub],
+  providers: [
+    GitHub({
+      clientId: process.env.AUTH_GITHUB_ID,
+      clientSecret: process.env.AUTH_GITHUB_SECRET,
+    }),
+  ],
   basePath: "/api/auth",
   callbacks: {
     authorized({ request, auth }) {
@@ -42,7 +47,7 @@ const config = {
   experimental: {
     enableWebAuthn: true,
   },
-  debug: process.env.NODE_ENV !== "production" ? true : false,
+  debug: true,
 } satisfies NextAuthConfig;
 
 export const { handlers, auth, signIn, signOut } = NextAuth(config);
