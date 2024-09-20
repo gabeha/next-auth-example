@@ -21,7 +21,6 @@ const config = {
     GitHub({
       clientId: process.env.AUTH_GITHUB_ID,
       clientSecret: process.env.AUTH_GITHUB_SECRET,
-      redirectProxyUrl: process.env.AUTH_REDIRECT_PROXY_URL,
     }),
   ],
   basePath: "/api/auth",
